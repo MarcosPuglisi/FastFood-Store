@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../styles/header.css';
 
-const Header = ({ cart }) => {
+const Header = ({ cart, setSelectedCategory  }) => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [isCartListVisible, setIsCartListVisible] = useState(false);
 
@@ -21,6 +21,7 @@ const Header = ({ cart }) => {
   const handleCategoryClick = (categoryTitle) => {
     // Lógica para manejar el clic en la categoría
     console.log(`Clic en la categoría: ${categoryTitle}`);
+    setSelectedCategory(categoryTitle);
   };
   
   
@@ -32,8 +33,8 @@ const Header = ({ cart }) => {
         <button className="nav-button" onClick={() => handleCategoryClick("Menu Express")}>
           Menu Express
         </button>
-        <button className="nav-button" onClick={() => handleCategoryClick("Entrada")}>
-          Entrada
+        <button className="nav-button" onClick={() => handleCategoryClick("First")}>
+          Fisrt
         </button>
         <button className="nav-button" onClick={() => handleCategoryClick("Menu")}>
           Menu

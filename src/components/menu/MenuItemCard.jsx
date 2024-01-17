@@ -5,8 +5,10 @@ const MenuItemCard = ({ item, onAddToCart }) => {
   const { id, name, description, price, image } = item;
 
   const handleAddToCart = () => {
-    // Llama a la función onAddToCart y pasa el ID del elemento seleccionado
-    onAddToCart(id);
+    // Llama a la función onAddToCart solo si está definida
+    if (onAddToCart) {
+      onAddToCart(id);
+    }
   };
 
   return (
