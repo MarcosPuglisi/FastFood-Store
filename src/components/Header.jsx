@@ -1,30 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import '../styles/header.css';
 
-const Header = ({ cart, setSelectedCategory  }) => {
-  const [isCartVisible, setIsCartVisible] = useState(false);
-  const [isCartListVisible, setIsCartListVisible] = useState(false);
-
-  const showCart = () => {
-    setIsCartVisible(true);
-  };
-
-  const hideCart = () => {
-    setIsCartVisible(false);
-    setIsCartListVisible(false);
-  };
-
-  const showCartList = () => {
-    setIsCartListVisible(true);
-  };
+const Header = ({ setSelectedCategory }) => {
 
   const handleCategoryClick = (categoryTitle) => {
-    // Lógica para manejar el clic en la categoría
     console.log(`Clic en la categoría: ${categoryTitle}`);
     setSelectedCategory(categoryTitle);
   };
-  
-  
 
   return (
     <div className="header-container">
@@ -34,7 +16,7 @@ const Header = ({ cart, setSelectedCategory  }) => {
           Menu Express
         </button>
         <button className="nav-button" onClick={() => handleCategoryClick("First")}>
-          Fisrt
+          First
         </button>
         <button className="nav-button" onClick={() => handleCategoryClick("Menu")}>
           Menu
@@ -46,20 +28,6 @@ const Header = ({ cart, setSelectedCategory  }) => {
           Dolce
         </button>
       </nav>
-      <div className="cart" onMouseEnter={showCart} onMouseLeave={hideCart} onClick={showCartList}>
-        Carrito
-        {isCartVisible && (
-          <div className="cart-content">
-            {isCartListVisible && (
-              <ul>
-                {cart.map(item => (
-                  <li key={item.id}>{item.quantity} x {item.name}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
-      </div>
     </div>
   );
 };
