@@ -5,6 +5,7 @@ import categories from './Data/Categories';
 
 const Body = ({ cart: propCart, selectedCategory }) => {
   const [cart, setCart] = useState(propCart || []);
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false);
 
   // Función para calcular la suma total
   const calculateTotal = () => {
@@ -19,10 +20,9 @@ const Body = ({ cart: propCart, selectedCategory }) => {
     const existingItem = cart.find(item => item.id === itemId);
 
     if (existingItem) {
-      //Incrementa la cantidad
+      // Incrementa la cantidad
       setCart(cart.map(item => (item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item)));
     } else {
-      // Agrégalo con cantidad 1
       const newItem = {
         id: itemId,
         quantity: 1,
@@ -40,6 +40,19 @@ const Body = ({ cart: propCart, selectedCategory }) => {
       // Si la nueva cantidad es 0 o menos, elimina el artículo del carrito
       setCart(cart.filter(item => item.id !== itemId));
     }
+  };
+
+  // Función para manejar la visualización del formulario de compra
+  const handleToggleCheckoutForm = () => {
+    setShowCheckoutForm(!showCheckoutForm);
+  };
+
+  // Función para manejar la compra
+  const handleCheckout = () => {
+    // Agrega lógica aquí para procesar la compra si es necesario
+    // ...
+    // Luego, cierra el formulario
+    handleToggleCheckoutForm();
   };
 
   return (
@@ -75,8 +88,22 @@ const Body = ({ cart: propCart, selectedCategory }) => {
             ))}
           </ul>
           <p>Total: ${calculateTotal()}</p>
+          <button onClick={handleToggleCheckoutForm}>Comprar</button>
         </div>
       </div>
+
+      {/* Mostrar el formulario de compra si showCheckoutForm es verdadero */}
+      {showCheckoutForm && (
+        <div className="checkout-form">
+          <h2>Completa el formulario de compra</h2>
+          {/* Agrega tus campos de formulario aquí */}
+          <form>
+            {/* Campos del formulario (nombre, dirección, teléfono, etc.) */}
+            {/* ... */}
+            <button type="button" onClick={handleCheckout}>Realizar Compra</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
