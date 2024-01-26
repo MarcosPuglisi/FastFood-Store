@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import MenuItemCard from './menu/MenuItemCard';
-import '../styles/body/body.css';
 import categories from './Data/Categories';
+import '../styles/body/body.css';
+import '../styles/body/buyForm.css';
+
 
 const Body = ({ cart: propCart, selectedCategory }) => {
   const [cart, setCart] = useState(propCart || []);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   // Función para calcular la suma total
   const calculateTotal = () => {
@@ -44,15 +47,18 @@ const Body = ({ cart: propCart, selectedCategory }) => {
 
   // Función para manejar la visualización del formulario de compra
   const handleToggleCheckoutForm = () => {
+    console.log('haciendo click')
     setShowCheckoutForm(!showCheckoutForm);
   };
 
   // Función para manejar la compra
   const handleCheckout = () => {
     // Agrega lógica aquí para procesar la compra si es necesario
-    // ...
-    // Luego, cierra el formulario
-    handleToggleCheckoutForm();
+  // Luego, muestra el modal de confirmación
+  setShowConfirmationModal(true);
+
+  // Finalmente, cierra el formulario
+  handleToggleCheckoutForm();
   };
 
   return (
@@ -88,22 +94,53 @@ const Body = ({ cart: propCart, selectedCategory }) => {
             ))}
           </ul>
           <p>Total: ${calculateTotal()}</p>
-          <button onClick={handleToggleCheckoutForm}>Comprar</button>
-        </div>
+          {/* Modifica el botón "Buy" para mostrar el formulario en el modal */}
+        <button onClick={handleToggleCheckoutForm}>Buy</button>
       </div>
+    </div>
 
-      {/* Mostrar el formulario de compra si showCheckoutForm es verdadero */}
-      {showCheckoutForm && (
-        <div className="checkout-form">
-          <h2>Completa el formulario de compra</h2>
+       {/* Mostrar el formulario de compra si showCheckoutForm es verdadero */}
+    {showCheckoutForm && (
+      <div className="modal-form">
+        <div className="modal-contenido">
+          <span className="cerrar-form" onClick={handleToggleCheckoutForm}>&times;</span>
+          <h2>How you want to pay?</h2>
           {/* Agrega tus campos de formulario aquí */}
           <form>
-            {/* Campos del formulario (nombre, dirección, teléfono, etc.) */}
-            {/* ... */}
-            <button type="button" onClick={handleCheckout}>Realizar Compra</button>
+            {/* Opciones de pago */}
+            <label>
+            Payment Method:
+            <select name="paymentMethod">
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+            </select>
+          </label>
+
+          {/* Opciones de entrega */}
+            <label>
+            Delivery Method:
+            <select name="deliveryMethod">
+              <option value="inStore">Dine In</option>
+              <option value="delivery">Delivery</option>
+            </select>
+          </label>
+
+          {/* Importe Final */}
+          <p>Total: ${calculateTotal()}</p>
+            <button type="button" onClick={handleCheckout}>Pay</button>
           </form>
         </div>
-      )}
+      </div>
+    )}
+        {showConfirmationModal && (
+      <div className="confirmation-modal">
+        <div className="confirmation-content">
+          <span className="cerrar-form" onClick={() => setShowConfirmationModal(false)}>&times;</span>
+          <h2>Compra Confirmada</h2>
+          <p>¡Gracias por tu compra!</p>
+        </div>
+      </div>
+    )}
     </div>
   );
 };
