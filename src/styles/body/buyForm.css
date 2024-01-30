@@ -28,7 +28,7 @@
     cursor: pointer;
   }
   
-  /* Estilo para el formulario dentro del modal (puedes ajustar según tus necesidades) */
+  /* Estilo para el formulario dentro del modal  */
   .checkout-form {
     text-align: center;
   }
@@ -66,7 +66,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 255, 0, 0.5); /* Fondo verde semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
   }
   
   .confirmation-content {
@@ -74,7 +74,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    color: rgb(0, 0, 0);
+    background-color: rgb(0, 255, 0);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

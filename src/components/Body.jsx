@@ -59,7 +59,19 @@ const Body = ({ cart: propCart, selectedCategory }) => {
 
   // Finalmente, cierra el formulario
   handleToggleCheckoutForm();
+
+      // Luego, muestra el modal de confirmación
+      setShowConfirmationModal(true);
+  
+      // Finalmente, cierra el formulario
+      handleToggleCheckoutForm();
+    
+      // Recargar la página después de 5 segundos
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
   };
+  
 
   return (
     <div className="body-container">

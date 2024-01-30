@@ -10,7 +10,9 @@ const Header = ({ setSelectedCategory }) => {
 
   return (
     <div className="header-container">
-      <div className="logo">Logo</div>
+      <div className="logo">
+        <img src="/images/logo.png" alt="logo" />
+      </div>
       <nav className="nav">
         <button className="nav-button" onClick={() => handleCategoryClick("Menu Express")}>
           Menu Express
