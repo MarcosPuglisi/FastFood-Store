@@ -80,7 +80,7 @@ const Body = ({ cart: propCart, selectedCategory }) => {
   };
 
   return (
-    <div className="body-container">
+    <div className={`body-container ${showCheckoutForm || showConfirmationModal ? 'modal-open' : ''}`} >
       {categories
         .filter((category) => !selectedCategory || category.title === selectedCategory)
         .map((category) => (
@@ -105,6 +105,8 @@ const Body = ({ cart: propCart, selectedCategory }) => {
             </button>
             <div className="cart-container">
               <h2>Shopping Cart</h2>
+              <button className="button-buy" onClick={handleToggleCheckoutForm} disabled={cart.length === 0}>Buy</button>
+              <p>Total: ${calculateTotal()}</p>
               <ul>
                 {cart.map(item => (
                   <li key={item.id}>
@@ -114,18 +116,18 @@ const Body = ({ cart: propCart, selectedCategory }) => {
                   </li>
                 ))}
               </ul>
-              <p>Total: ${calculateTotal()}</p>
-              <button className="button-buy" onClick={handleToggleCheckoutForm}>Buy</button>
             </div>
           </div>
 
+                   {/* Overlay para oscurecer el fondo */}
+      <div className={`overlay ${showCheckoutForm || showConfirmationModal ? 'show' : ''}`} />
 
        {/* Mostrar el formulario de compra si showCheckoutForm es verdadero */}
     {showCheckoutForm && (
       <div className="modal-form">
         <div className="modal-contenido">
           <span className="cerrar-form" onClick={handleToggleCheckoutForm}>&times;</span>
-          <h2>How you want to pay?</h2>
+          <h2>How do you want to pay?</h2>
           {/* Agrega tus campos de formulario aquí */}
           <form>
             {/* Opciones de pago */}
@@ -153,12 +155,15 @@ const Body = ({ cart: propCart, selectedCategory }) => {
         </div>
       </div>
     )}
+
+
+     {/* Mostrar el modal de confirmación si showConfirmationModal es verdadero */}
         {showConfirmationModal && (
-      <div className="confirmation-modal">
-        <div className="confirmation-content">
-          <span className="cerrar-form" onClick={() => setShowConfirmationModal(false)}>&times;</span>
-          <h2>Compra Confirmada</h2>
-          <p>¡Gracias por tu compra!</p>
+       <div className="confirmation-modal show">
+       <div className="confirmation-content">
+         <span className="cerrar-form" onClick={() => setShowConfirmationModal(false)}>&times;</span>
+          <h2>Order Confirmed</h2>
+          <p>Thank you for your purchase!</p>
         </div>
       </div>
     )}

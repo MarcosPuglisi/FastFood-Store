@@ -36,7 +36,7 @@ const categories = [
     items: [
         { id: 10, name: 'IceCream', description: 'Chocolate or Stromburry', price: 0.99, image: '/images/Sweet/icecream.png' },
         { id: 11, name: 'Coffe', description: 'Expresso', price: 0.99, image: '/images/Sweet/coffe.png' },
-        { id: 12, name: 'Corneto', description: 'Corneto con pistachio', price: 0.99, image: '/images/Sweet/cornetto.png' },
+        { id: 12, name: 'Cornetto', description: 'Corneto con pistachio', price: 0.99, image: '/images/Sweet/cornetto.png' },
         ],
     },
     
