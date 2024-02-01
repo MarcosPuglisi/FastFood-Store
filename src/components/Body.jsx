@@ -22,11 +22,15 @@ const Body = ({ cart: propCart, selectedCategory }) => {
 
   // Función para manejar la adición o actualización de elementos al carrito
   const handleAddToCart = (itemId) => {
-    const existingItem = cart.find(item => item.id === itemId);
-
+    const existingItem = cart.find((item) => item.id === itemId);
+  
     if (existingItem) {
       // Incrementa la cantidad
-      setCart(cart.map(item => (item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item)));
+      setCart(
+        cart.map((item) =>
+          item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
     } else {
       const newItem = {
         id: itemId,
@@ -34,8 +38,18 @@ const Body = ({ cart: propCart, selectedCategory }) => {
       };
       setCart([...cart, newItem]);
     }
+  
+    // Agregar la clase de animación al elemento del producto
+    const productElement = document.getElementById(`product-${itemId}`);
+    productElement.classList.add("added-to-cart");
+  
+    // Eliminar la clase de animación después de un tiempo
+    setTimeout(() => {
+      productElement.classList.remove("added-to-cart");
+    }, 1000); // Ajusta el tiempo según tus preferencias
   };
-
+  
+  
   // Función para manejar la actualización de la cantidad de un elemento en el carrito
   const handleUpdateQuantity = (itemId, newQuantity) => {
     if (newQuantity > 0) {
