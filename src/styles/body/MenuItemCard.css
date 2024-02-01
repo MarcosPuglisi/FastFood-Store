@@ -43,8 +43,9 @@
   }
   
   .add-to-cart-button {
-    background-color: #4caf50;
+    background-color: #FF8000;
     color: white;
+    width: 180px;
     border: none;
     padding: 8px 12px;
     text-align: center;

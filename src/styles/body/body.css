@@ -11,3 +11,15 @@
     justify-content: center; /* Centra horizontalmente en el eje X */
     gap: 20px; /* Espacio entre las tarjetas */
   }
+
+
+  
+  /* Transiciones suaves */
+  button, button.buy-button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  button:hover, button.buy-button:hover {
+    background-color: #e08000; /* Cambia el tono de naranja al pasar el ratón */
+  }
+  

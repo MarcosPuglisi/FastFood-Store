@@ -3,12 +3,14 @@ import MenuItemCard from './menu/MenuItemCard';
 import categories from './Data/Categories';
 import '../styles/body/body.css';
 import '../styles/body/buyForm.css';
+import '../styles/body/cart.css';
 
 
 const Body = ({ cart: propCart, selectedCategory }) => {
   const [cart, setCart] = useState(propCart || []);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [isCartMinimized, setCartMinimized] = useState(false);
 
   // Función para calcular la suma total
   const calculateTotal = () => {
@@ -72,6 +74,10 @@ const Body = ({ cart: propCart, selectedCategory }) => {
       }, 3000);
   };
   
+  const handleToggleCart = () => {
+    // Cambia el estado para alternar entre minimizar y maximizar el carrito
+    setCartMinimized(!isCartMinimized);
+  };
 
   return (
     <div className="body-container">
@@ -79,7 +85,7 @@ const Body = ({ cart: propCart, selectedCategory }) => {
         .filter((category) => !selectedCategory || category.title === selectedCategory)
         .map((category) => (
           <div key={category.title}>
-            <h2>{category.title}</h2>
+            <h1>{category.title}</h1>
             <div className="menu-items-container">
               {category.items.map((item) => (
                 <MenuItemCard
@@ -93,23 +99,26 @@ const Body = ({ cart: propCart, selectedCategory }) => {
           </div>
         ))}
 
-      <div className="cart-mini-window">
-        <div className="cart-container">
-          <h2>Carrito de Compras</h2>
-          <ul>
-            {cart.map(item => (
-              <li key={item.id}>
-                {item.quantity} x {categories.flatMap(category => category.items).find(itemData => itemData.id === item.id).name}
-                <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
-                <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
-              </li>
-            ))}
-          </ul>
-          <p>Total: ${calculateTotal()}</p>
-          {/* Modifica el botón "Buy" para mostrar el formulario en el modal */}
-        <button onClick={handleToggleCheckoutForm}>Buy</button>
-      </div>
-    </div>
+          <div className={`cart-mini-window ${isCartMinimized ? 'minimized' : ''}`}>
+            <button className="button-toggle-cart" onClick={handleToggleCart} >
+              <i class="fas fa-cart-shopping"></i>
+            </button>
+            <div className="cart-container">
+              <h2>Shopping Cart</h2>
+              <ul>
+                {cart.map(item => (
+                  <li key={item.id}>
+                    {item.quantity} x {categories.flatMap(category => category.items).find(itemData => itemData.id === item.id).name}
+                    <button className="button-more" onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
+                    <button className="button-more" onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
+                  </li>
+                ))}
+              </ul>
+              <p>Total: ${calculateTotal()}</p>
+              <button className="button-buy" onClick={handleToggleCheckoutForm}>Buy</button>
+            </div>
+          </div>
+
 
        {/* Mostrar el formulario de compra si showCheckoutForm es verdadero */}
     {showCheckoutForm && (

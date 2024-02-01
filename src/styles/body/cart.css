@@ -1,0 +1,89 @@
+.cart-mini-window {
+    position: fixed;
+    top: 50px; /* Ajusta según tu diseño */
+    right: 20px; /* Ajusta según tu diseño */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 999;
+    max-height: 400px; /* Altura máxima del carrito, ajusta según tu diseño */
+    overflow-y: auto; /* Agrega scroll vertical cuando sea necesario */
+    transition: max-height 0.3s ease; /* Agrega una transición suave para la animación */
+  }
+  
+  .cart-container {
+    text-align: left;
+    font-size: 17px;
+  }
+  
+  h2 {
+    color: #f90; /* Color naranja de tu paleta */
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para los botones de cantidad */
+  .button-more {
+    width: 40px;
+    height: 35px;
+    background-color: #f90;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  /* Estilos para el botón "Buy" */
+  .button-buy {
+    width: 230px;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #f90;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  /* Estilos para el botón de minimizar/maximizar */
+  .button-toggle-cart {
+    background-color: #f90;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px; /* Ajusta según tu diseño */
+    right: 10px; /* Ajusta según tu diseño */
+  }
+  
+  /* Estilos para el total */
+  p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  
+  .cart-mini-window.minimized {
+    max-height: 50px; /* O ajusta a la altura mínima que desees cuando está minimizado */
+    overflow-y: hidden; /* Esconde el contenido cuando está minimizado */
+    transition: max-height 0.3s ease; /* Agrega una transición suave para la animación */
+  }
+  
