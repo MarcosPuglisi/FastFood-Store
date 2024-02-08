@@ -18,8 +18,8 @@
 /* Estilos para el modal de pago */
 .modal-form {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 37%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border: 1px solid #ccc;
@@ -63,6 +63,25 @@ select {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 5px;
+  background-color: #f9f9f9; /* Cambia el color de fondo */
+  color: #333; /* Cambia el color del texto */
+  font-size: 16px; /* Tamaño del texto */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+}
+
+/* Estilo para las opciones */
+option {
+  background-color: #fff; /* Cambia el color de fondo */
+  color: #333; /* Cambia el color del texto */
+  font-size: 20px; /* Ajusta el tamaño del texto */
+  padding: 50px; /* Ajusta el padding dentro de las opciones */
+}
+
+/* Estilo para las opciones cuando se seleccionan */
+option:checked {
+  background-color: #fff; /* Cambia el color de fondo */
+  color: #000000; /* Cambia el color del texto */
+   /* Añade negrita al texto */
 }
 
 /* Estilos para el botón de pago */
@@ -90,8 +109,8 @@ p {
 .confirmation-modal {
   display: none;
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 35%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border: 1px solid #ccc;
@@ -110,7 +129,7 @@ p {
 }
 
 .confirmation-content {
-  text-align: left;
+  text-align: center;
 }
 
 .confirmation-content h2 {
@@ -128,4 +147,13 @@ p {
   font-size: 20px;
   color: #f90;
   cursor: pointer;
+}
+
+.confirmation-icon {
+  margin-bottom: 20px;
+}
+
+.fa-circle-check{
+  color: green;
+  height: 80px;
 }

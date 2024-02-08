@@ -69,7 +69,7 @@ const Body = ({ cart: propCart, selectedCategory }) => {
 
   // Función para manejar la compra
   const handleCheckout = () => {
-    // Agrega lógica aquí para procesar la compra si es necesario
+  // Lógica para procesar la compra si es necesario
   // Luego, muestra el modal de confirmación
   setShowConfirmationModal(true);
 
@@ -84,7 +84,7 @@ const Body = ({ cart: propCart, selectedCategory }) => {
     
       // Recargar la página después de 5 segundos
       setTimeout(() => {
-        window.location.reload();
+      window.location.reload();
       }, 3000);
   };
   
@@ -138,31 +138,29 @@ const Body = ({ cart: propCart, selectedCategory }) => {
 
        {/* Mostrar el formulario de compra si showCheckoutForm es verdadero */}
     {showCheckoutForm && (
-      <div className="modal-form">
+      <div className="modal-form animate__animated animate__backInDown">
         <div className="modal-contenido">
           <span className="cerrar-form" onClick={handleToggleCheckoutForm}>&times;</span>
           <h2>How do you want to pay?</h2>
           {/* Agrega tus campos de formulario aquí */}
           <form>
-            {/* Opciones de pago */}
             <label>
-            Payment Method:
+            Payment Method: 
             <select name="paymentMethod">
-              <option value="cash">Cash</option>
-              <option value="card">Card</option>
+              <option value="cash">Cash <i class="fa fa-money-bill-1"></i></option>
+              <option value="card">Card <i class="fa fa-credit-card"></i></option>
+              <i class="fa-regular fa-credit-card"></i> 
             </select>
           </label>
 
-          {/* Opciones de entrega */}
             <label>
             Delivery Method:
             <select name="deliveryMethod">
-              <option value="inStore">Dine In</option>
-              <option value="delivery">Delivery</option>
+              <option value="inStore">Dine In <i class="fa-solid fa-store"></i></option>
+              <option value="takeaway">Take away <i class="fa-solid fa-motorcycle"></i></option>
             </select>
           </label>
 
-          {/* Importe Final */}
           <p>Total: ${calculateTotal()}</p>
             <button type="button" onClick={handleCheckout}>Pay</button>
           </form>
@@ -171,12 +169,14 @@ const Body = ({ cart: propCart, selectedCategory }) => {
     )}
 
 
-     {/* Mostrar el modal de confirmación si showConfirmationModal es verdadero */}
         {showConfirmationModal && (
-       <div className="confirmation-modal show">
+       <div className="confirmation-modal show animate__animated animate__bounceIn">
        <div className="confirmation-content">
          <span className="cerrar-form" onClick={() => setShowConfirmationModal(false)}>&times;</span>
-          <h2>Order Confirmed</h2>
+          <div className="confirmation-icon">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h2>Order Confirmed Successfully!</h2>
           <p>Thank you for your purchase!</p>
         </div>
       </div>
